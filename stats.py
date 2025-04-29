@@ -4,3 +4,11 @@ def get_num_words(text):
         wc += 1
     return wc
 
+def get_char_count(text):
+    char_count = {}
+    for c in text.lower():
+        if c in char_count:
+            char_count[c] += 1
+        else:
+            char_count[c] = 1
+    return char_count
