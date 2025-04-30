@@ -1,3 +1,5 @@
+import sys
+import os.path
 from stats import get_num_words, get_char_count, clean_data
 
 def get_book_test(path):
@@ -7,7 +9,17 @@ def get_book_test(path):
     return text
 
 def main():
-    path = "books/frankenstein.txt" 
+
+    if len(sys.argv) < 2:
+        print("Usage: python3 main.py <path_to_book>")
+        sys.exit(1)
+
+    path = sys.argv[1]
+
+    if not ( os.path.exists(path) and os.path.isfile(path) ):
+        print(" The first argument must be a valid path to a file.")
+        sys.exit(2)
+
     char_data = clean_data(get_char_count(get_book_test(path)))
 
     print("============ BOOKBOOT ============")
