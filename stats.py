@@ -12,3 +12,13 @@ def get_char_count(text):
         else:
             char_count[c] = 1
     return char_count
+
+def clean_data(data):
+    keys = []
+    for key in data.keys():
+        keys.append({"char": key, "num": data[key]})
+    keys.sort(key = get_count, reverse = True)
+    return keys
+
+def get_count(data_point):
+    return data_point["num"]

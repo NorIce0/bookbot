@@ -1,4 +1,4 @@
-from stats import get_num_words, get_char_count
+from stats import get_num_words, get_char_count, clean_data
 
 def get_book_test(path):
     text = ""
@@ -8,10 +8,21 @@ def get_book_test(path):
 
 def main():
     path = "books/frankenstein.txt" 
-    char_count = get_char_count(get_book_test(path))
+    char_data = clean_data(get_char_count(get_book_test(path)))
 
-    print(f"{get_num_words(get_book_test(path))} words found in the document")
-    print(f"{char_count}")
+    print("============ BOOKBOOT ============")
+    print(f"Analyzing book found at {path}...")
+    print("----------- Word Count -----------")
+    
+    print(f"Found { get_num_words(get_book_test(path)) } total words")
+    
+    print("--------- Character Count ---------")
+
+    for data_point in char_data:
+        if data_point["char"].isalpha():
+            print(f"{data_point['char']}: {data_point['num']}")
+    
+    print("============= END =============")
 
 
 main()
